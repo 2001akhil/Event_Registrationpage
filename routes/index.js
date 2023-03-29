@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const db=require('../connection/db')
+const name=web_reg;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,9 +24,9 @@ router.post('/',(req,res,next)=>{
   
    const date=new Date()
   console.log(date)
-  const admin=[[req.body.name,req.body.email,req.body.year,req.body.college,req.body.programming_knowledge,req.body.web_knowledge,req.body.Reach,req.body.questions,date,req.body.branch,req.body.phone]]
+  const admin=[[req.body.name,req.body.email,req.body.year,req.body.college,req.body.Reach,req.body.questions,date,req.body.branch,req.body.phone]]
   console.log(admin)
-  var view_sql="select * from student where email=?"
+  var view_sql=`select * from ${name} where email=?`
   db.query(view_sql,form_email,function(err,result){
     if(err){
       console.log(err)
@@ -38,7 +39,7 @@ router.post('/',(req,res,next)=>{
       }else
       {
         
-        var view_sql="select * from student where mob=?"
+        var view_sql=`select * from ${name} where mob=?`
         db.query(view_sql,form_phone,function(err,result){
           if(err){
             console.log(err)
@@ -50,7 +51,7 @@ router.post('/',(req,res,next)=>{
               const msg2="Phone number already exist";
               console.log(result[0].mob)
               res.render('index',{msg2})
-            }else{     var sql="INSERT INTO student (name,email,YEAR,college,programming_knowledge,web_know,reac,questions,time_date,branch,mob) VALUES ?";
+            }else{     var sql=`INSERT INTO ${name} (name,email,YEAR,college,reac,questions,time_date,branch,mob) VALUES ?`;
         db.query(sql,[admin],function(err,result){
         if(err){
       
