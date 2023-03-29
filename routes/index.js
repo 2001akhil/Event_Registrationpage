@@ -5,10 +5,10 @@ const db=require('../connection/db')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('closed', { title: 'CSI' });
+  res.render('index', { title: 'CSI' });
   console.log(next);
 });
-router.post('/home',(req,res,next)=>{
+router.post('/',(req,res,next)=>{
   console.log(req.body)
   form_name=req.body.name;
   form_email=req.body.email;
