@@ -6,15 +6,15 @@ function emailer(email){
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'yourgmailaccount@gmail.com',
-    pass: 'yourgmailpassword'
+    user: 'csi@sjcetpalai.ac.in',
+    pass: 'csi@sjcet123'
   }
 });
 
 // Create email message
 const message = {
   from: 'yourgmailaccount@gmail.com',
-  to: 'user@example.com',
+  to: email,
   subject: 'Registration Confirmation',
   text: 'Hello, Thank you for registering on our website!'
 };

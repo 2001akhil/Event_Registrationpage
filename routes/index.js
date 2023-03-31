@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 const db=require('../connection/db')
 const mailer=require('./mailer')
+const nodemailer=require('nodemailer')
 
 
 /* GET home page. */
@@ -65,6 +66,31 @@ router.post('/home',(req,res,next)=>{
        console.log('inserted')
        var msg3='successfully registered';
        res.render('success',{msg3})
+
+       const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'csi@sjcetpalai.ac.in',
+          pass: 'csi@sjcet123'
+        }
+      });
+      
+      // Create email message
+      const message = {
+        from: 'yourgmailaccount@gmail.com',
+        to: form_email,
+        subject: 'Registration Confirmation',
+        text: 'Hello, Thank you for registering on our website!'
+      };
+      
+      // Send email
+      transporter.sendMail(message, function(err, info) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
       
 
         }
