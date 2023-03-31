@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CSI' });
   console.log(next);
 });
-router.post('/',(req,res,next)=>{
+router.post('/home',(req,res,next)=>{
   console.log(req.body)
   form_name=req.body.name;
   form_email=req.body.email;
@@ -51,7 +51,8 @@ router.post('/',(req,res,next)=>{
               const msg2="Phone number already exist";
               console.log(result[0].mob)
               res.render('index',{msg2})
-            }else{     var sql="INSERT INTO web_reg (name,email,YEAR,college,reac,questions,time_date,branch,mob) VALUES ?";
+            }else{   
+              var sql="INSERT INTO web_reg (name,email,YEAR,Batch,reac,questions,time_date,branch,mob) VALUES ?";
         db.query(sql,[admin],function(err,result){
         if(err){
       
