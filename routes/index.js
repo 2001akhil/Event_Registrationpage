@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const db=require('../connection/db')
+const mailer=require('./mailer')
 
 
 /* GET home page. */
